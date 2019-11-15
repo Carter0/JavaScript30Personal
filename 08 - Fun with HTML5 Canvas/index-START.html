@@ -5,8 +5,61 @@
   <title>HTML5 Canvas</title>
 </head>
 <body>
+<!--The thing we are going to be drawing on. --> 
 <canvas id="draw" width="800" height="800"></canvas>
 <script>
+
+const canvas = document.querySelector('#draw');
+const context = canvas.getContext('2d'); //You draw on the context, not the canvas element itself.
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight; 
+context.strokeStyle = '#BADA55';
+context.lineJoin = 'round';
+context.lineCap = 'round';
+context.lineWidth = 50;
+
+//There are a few differences between the let and var keywords
+//Basically, let has "block" scope. Which is different from var scope.
+//Var scope applies to the whole method whereas let scope only applied to a block.
+//A block is an if statement or a pair of brackets
+//You cannot redeclare a let variable in the same block scope. 
+//let variables are also not initilized until there definition is evaluated.
+let isDrawing = false;
+let lastX = 0;
+let lastY = 0;
+let hue = 0;
+
+//let lastY = 2; -> throws an error in the console.
+
+
+function draw(e) {
+  if (!isDrawing) return; //Stop the function from running when they are not moused down.
+  console.log(e);
+  context.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+  context.beginPath();
+  //start from
+  context.moveTo(lastX, lastY);
+  //go to
+  context.lineTo(e.offsetX, e.offsetY); //comes from event.
+  context.stroke();
+  [lastX, lastY] = [e.offsetX, e.offsetY];
+  hue++;
+  if (hue >= 360) {
+    hue = 0;
+  } 
+}
+
+canvas.addEventListener('mousedown', (e) => {
+  isDrawing = true;
+  [lastX, lastY] = [e.offsetX, e.offsetY]; //Stops the line from starting at 0,0
+});
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', () => isDrawing = false);
+canvas.addEventListener('mouseout', () => isDrawing = false);
+
+
+
+
 </script>
 
 <style>

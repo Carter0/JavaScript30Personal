@@ -1,0 +1,25 @@
+{
+  "name": "javascript30",
+  "version": "1.0.0",
+  "description": "Before I started learning React I wanted to get a better idea of what javascript is about.",
+  "main": "index.js",
+  "dependencies": {
+    "jshint": "^2.10.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carter0/JavaScript30Personal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Carter0/JavaScript30Personal/issues"
+  },
+  "homepage": "https://github.com/Carter0/JavaScript30Personal#readme"
+}
